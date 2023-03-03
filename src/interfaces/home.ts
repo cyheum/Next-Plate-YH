@@ -1,3 +1,4 @@
 export interface IHomeInitialState {
-  test: boolean;
+  isLoading: boolean;
+  modals: { test: boolean };
 }

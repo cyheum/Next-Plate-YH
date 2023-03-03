@@ -1,17 +1,22 @@
-import { takeEvery } from 'redux-saga/effects';
-// import { GET } from '@/utils';
+import { put, delay, takeEvery } from 'redux-saga/effects';
 import { homeActions } from '..';
-import { ActionType } from '@/interfaces';
+// import { GET } from '@/utils';
+import { PayloadAction } from '@reduxjs/toolkit';
 
-export function* getTestDataSaga(_: ActionType) {
+export function* getAllInitialSaga(_: PayloadAction) {
   try {
+    yield put(homeActions.setIsLoading(true));
+    console.log('saga is doing');
+    yield delay(1000);
   } catch (err) {
     console.error(err);
+  } finally {
+    console.log('saga is done');
+    yield put(homeActions.setIsLoading(false));
   }
 }
-
-export function* watchGetTestData() {
-  yield takeEvery(homeActions.getTestData, getTestDataSaga);
+export function* watchGetInitial() {
+  yield takeEvery(homeActions.getAllInitial, getAllInitialSaga);
 }
 
-export default [watchGetTestData].map((fn) => fn());
+export default [watchGetInitial].map((fn) => fn());

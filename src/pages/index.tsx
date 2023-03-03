@@ -1,24 +1,16 @@
+import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import styled from 'styled-components';
-import { useGetStore } from '@/hooks';
-
-const Test = styled.div`
-  width: 300px;
-  height: 300px;
-  background-color: red;
-`;
+import { Button } from '@/components';
 
 const Home: NextPage = () => {
-  const { test } = useGetStore.home();
-
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Main Page</title>
       </Head>
-      <Test></Test>
-      <div>hello this is test {`${test}`}</div>
+      <Button text="Button" />
+      <div>hello this is Next + Redux + Redux-saga</div>
     </div>
   );
 };

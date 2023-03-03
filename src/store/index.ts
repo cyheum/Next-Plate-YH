@@ -1,7 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import { routerReducer } from 'connected-next-router';
 import home from './modules/home';
 
 const rootReducer = combineReducers({
+  router: routerReducer,
   home,
 });
 

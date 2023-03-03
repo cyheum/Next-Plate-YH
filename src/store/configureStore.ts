@@ -1,9 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Store } from '@reduxjs/toolkit';
 import { createWrapper, HYDRATE } from 'next-redux-wrapper';
+import {
+  createRouterMiddleware,
+  initialRouterState,
+} from 'connected-next-router';
 import logger from 'redux-logger';
-import createSagaMiddleware from 'redux-saga';
-import rootReducer from './';
+import createSagaMiddleware, { Task } from 'redux-saga';
+import rootReducer, { RootState } from './';
 import rootSaga from './sagas';
+import Router from 'next/router';
+
+export interface SagaStore extends Store {
+  sagaTask?: Task;
+}
 
 const reducer = (state: any, action: any) => {
   if (action.type === HYDRATE) {
@@ -18,22 +27,36 @@ const reducer = (state: any, action: any) => {
   }
 };
 
-export const makeStore = () => {
+export const makeStore = (context) => {
   const sagaMiddleware = createSagaMiddleware();
-  const isProduct = process.env.NODE_ENV === 'production';
+  const routerMiddleware = createRouterMiddleware();
+  const { asPath } = context.ctx || Router.router || {};
+  let initialState;
+  if (asPath) {
+    initialState = {
+      router: initialRouterState(asPath),
+    };
+  }
+
+  const isProduct = process.env.NEXT_PUBLIC_ENVIROMENT === 'production';
 
   const store = configureStore({
     reducer,
+    preloadedState: initialState,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
-        isProduct ? [sagaMiddleware] : [sagaMiddleware, logger]
+        isProduct
+          ? [sagaMiddleware, routerMiddleware]
+          : [sagaMiddleware, routerMiddleware, logger]
       ),
     devTools: !isProduct,
   });
 
-  store.sagaTask = sagaMiddleware.run(rootSaga);
+  (store as SagaStore).sagaTask = sagaMiddleware.run(rootSaga);
 
   return store;
 };
 
-export const wrapper = createWrapper(makeStore, { debug: false });
+export const wrapper = createWrapper<Store<RootState>>(makeStore, {
+  debug: false,
+});

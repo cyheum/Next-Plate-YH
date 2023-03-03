@@ -53,6 +53,33 @@ export const mixins = {
       display: none; /* Chrome, Safari, Opera*/
     }
   `,
+  buttonTransition: () => css`
+    transition: all 0.15s ease-in-out;
+
+    &:active:enabled {
+      opacity: 0.7;
+    }
+
+    @media ${device.laptop} {
+      &:hover:enabled {
+        opacity: 0.7;
+      }
+    }
+  `,
+  primaryTransition: () => css`
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+
+    &:active {
+      opacity: 0.7;
+    }
+
+    @media ${device.laptop} {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  `,
 };
 
 export const theme: DefaultTheme = {

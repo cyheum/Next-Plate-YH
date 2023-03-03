@@ -8,8 +8,4 @@ export interface ISelectedDate {
   seconds?: number;
 }
 
-export interface ActionType {
-  type: string;
-}
-
 export * from './home';

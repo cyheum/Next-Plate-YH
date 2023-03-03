@@ -1,22 +1,10 @@
 import { useState, useRef, useEffect, MutableRefObject } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState, selectHomeState } from '@/store';
 
 interface IntersectProps {
   root?: Element | null;
   rootMargin?: string;
   threshold?: number;
 }
-
-function useGetRootState() {
-  const rootState = useSelector((rootState: RootState) => rootState);
-  return rootState;
-}
-
-//store 값을 가져오는 함수
-export const useGetStore = {
-  home: () => selectHomeState(useGetRootState().home),
-};
 
 // intersect hooks 함수
 export const useIntersect = (
@@ -61,3 +49,4 @@ export * from './useScrollDirection';
 export * from './useDateCountDown';
 export * from './useResize';
 export * from './useMouseMove';
+export * from './useGetStore';

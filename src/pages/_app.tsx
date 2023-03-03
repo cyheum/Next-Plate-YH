@@ -1,16 +1,23 @@
 // import '../styles/global.css';
 import type { AppProps } from 'next/app';
-import { GlobalStyle } from '@/styles';
-import withReduxSaga from 'next-redux-saga';
-import { wrapper } from '@/store/configureStore';
+import { wrapper } from '@/store';
+import { ConnectedRouter } from 'connected-next-router';
+import { InitialComponent } from '@/components';
+import { Provider } from 'react-redux';
 
-function App({ Component, pageProps }: AppProps) {
+const App: React.FC<AppProps> = ({ Component, ...rest }) => {
+  const { store, props } = wrapper.useWrappedStore(rest);
+
   return (
     <>
-      <GlobalStyle />
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <ConnectedRouter>
+          <InitialComponent />
+          <Component {...props.pageProps} />
+        </ConnectedRouter>
+      </Provider>
     </>
   );
-}
+};
 
-export default wrapper.withRedux(withReduxSaga(App));
+export default App;

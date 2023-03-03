@@ -2,25 +2,39 @@ import { IHomeInitialState } from '@/interfaces';
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: IHomeInitialState = {
-  test: true,
+  isLoading: false,
+  modals: { test: false },
 };
 
 const slice = createSlice({
   name: 'homeReducer',
   initialState,
   reducers: {
-    setTest: (state, { payload }: PayloadAction<IHomeInitialState['test']>) => {
-      state.test = payload;
+    setIsLoading: (state, { payload }: PayloadAction<boolean>) => {
+      state.isLoading = payload;
     },
-    getTestData: (_, __) => {},
+    openModal: (
+      state,
+      { payload }: PayloadAction<keyof IHomeInitialState['modals']>
+    ) => {
+      state.modals[payload] = true;
+    },
+    closeModal: (state, __: PayloadAction) => {
+      state.modals = {
+        test: false,
+      };
+    },
+    getAllInitial: (_, __: PayloadAction) => {},
   },
 });
 
 export const selectHomeState = createSelector(
-  (state: IHomeInitialState) => state.test,
-  (test) => {
+  (state: IHomeInitialState) => state.isLoading,
+  (state: IHomeInitialState) => state.modals,
+  (isLoading, modals) => {
     return {
-      test,
+      isLoading,
+      modals,
     };
   }
 );
