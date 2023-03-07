@@ -1,9 +1,10 @@
-// import '../styles/global.css';
-import type { AppProps } from 'next/app';
-import { wrapper } from '@/store';
 import { ConnectedRouter } from 'connected-next-router';
-import { InitialComponent } from '@/components';
+import { AppProps } from 'next/app';
+import React from 'react';
 import { Provider } from 'react-redux';
+
+import { InitialComponent } from '@/components';
+import { wrapper } from '@/store';
 
 const App: React.FC<AppProps> = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);

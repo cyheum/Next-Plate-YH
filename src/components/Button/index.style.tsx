@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { mixins, color } from '@/styles';
+
+import { color, mixins } from '@/styles';
 
 export const Container = styled.button`
   ${mixins.flexSet()}

@@ -1,11 +1,12 @@
 import Document, {
-  Html,
+  DocumentContext,
   Head,
+  Html,
   Main,
   NextScript,
-  DocumentContext,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+
 import { GlobalStyle } from '@/styles';
 
 export default class MyDocument extends Document {

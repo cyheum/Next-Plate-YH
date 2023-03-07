@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { Spinner } from '@/components';
 import { useGetStore } from '@/hooks';
 import { homeActions } from '@/store';
-import { useDispatch } from 'react-redux';
-import { Spinner } from '@/components';
 
 export const InitialComponent: React.FC = () => {
   const { isLoading } = useGetStore.home();
@@ -10,7 +11,7 @@ export const InitialComponent: React.FC = () => {
 
   useEffect(() => {
     dispatch(homeActions.getAllInitial());
-  }, []);
+  }, [dispatch]);
 
   return <>{isLoading && <Spinner />}</>;
 };

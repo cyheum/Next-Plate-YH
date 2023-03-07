@@ -1,7 +1,8 @@
-import { put, delay, takeEvery } from 'redux-saga/effects';
-import { homeActions } from '..';
 // import { GET } from '@/utils';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { delay, put, takeEvery } from 'redux-saga/effects';
+
+import { homeActions } from '..';
 
 export function* getAllInitialSaga(_: PayloadAction) {
   try {

@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 import { getDateObj } from '@/utils';
 
 export const useDateCountDown = (initialDate: string) => {
@@ -9,6 +10,7 @@ export const useDateCountDown = (initialDate: string) => {
     seconds: 0,
     done: false,
   });
+  // eslint-disable-next-line no-undef
   const countDown = useRef<NodeJS.Timeout | null>(null);
 
   const stopCountDown = () => {

@@ -1,6 +1,6 @@
 import { Button } from './Button';
+import { InitialComponent } from './InitialFetch';
 import { ShopSpinner } from './ShopSpinner';
 import { Spinner } from './Spinner';
-import { InitialComponent } from './InitialFetch';
 
-export { Button, ShopSpinner, Spinner, InitialComponent };
+export { Button, InitialComponent, ShopSpinner, Spinner };

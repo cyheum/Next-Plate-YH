@@ -1,14 +1,15 @@
 import { configureStore, Store } from '@reduxjs/toolkit';
-import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 import {
   createRouterMiddleware,
   initialRouterState,
 } from 'connected-next-router';
+import Router from 'next/router';
+import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 import logger from 'redux-logger';
 import createSagaMiddleware, { Task } from 'redux-saga';
+
 import rootReducer, { RootState } from './';
 import rootSaga from './sagas';
-import Router from 'next/router';
 
 export interface SagaStore extends Store {
   sagaTask?: Task;

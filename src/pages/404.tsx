@@ -1,10 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useRouter } from 'next/router';
 import { NextPage } from 'next';
 import { ErrorProps } from 'next/error';
-import { mixins } from '@/styles';
+import { useRouter } from 'next/router';
+import React from 'react';
+import styled from 'styled-components';
+
 import { Button } from '@/components';
+import { mixins } from '@/styles';
 
 const STDContainer = styled.div`
   ${mixins.flexSet()}

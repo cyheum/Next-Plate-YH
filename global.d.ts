@@ -1,8 +1,10 @@
 import 'redux';
 import 'react-redux';
+
 import { Task } from 'redux-saga';
-import { RootState } from '@/store';
+
 import { Kakao } from '@/interfaces';
+import { RootState } from '@/store';
 
 declare module 'redux' {
   export interface Store {
@@ -15,6 +17,7 @@ declare module 'react-redux' {
 }
 
 declare global {
+  // eslint-disable-next-line no-unused-vars
   interface Window {
     ChannelIO: any;
     attachEvent: any;
