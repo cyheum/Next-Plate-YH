@@ -44,16 +44,11 @@ export default class MyDocument extends Document {
           <meta content="ie=edge" httpEquiv="X-UA-Compatible" />
           <meta content="ko_KR" property="og:locale" />
           <meta content="summary_large_image" name="twitter:card" />
-          <meta
-            name="google-site-verification"
-            content="yGZYrltaTdvlKEHTQM1lKTHOlL438OIaDWzq9qtkNGg"
-          />
           <link
             rel="stylesheet"
             type="text/css"
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
           />
-          <link href="https://shop.cellypick.com" rel="canonical" />
           <link rel="shortcut icon" href="/image/favicon.png" />
         </Head>
         <body>
